@@ -10,7 +10,7 @@ desc = pd.read_csv('data/Descriptors.csv',skiprows = [0],index_col='symbol').dro
                                                                                'name','period',
                                                                                'ionic radius',
                                                                                'covalent radius','group',
-                                                                               'VdW radius','m. p.','b. p.',
+                                                                               'VdW radius',
                                                                                'crystal radius',
                                                                                'a x 106 ',
                                                                                'Heat capacity ',
@@ -91,8 +91,8 @@ for i in range(1, 9):
     #name.append('%i_period'%i)
     name.append('%i_atomic radius'%i)
     name.append('%i_electronegativity'%i)
-    #name.append('%i_m. p.'%i)
-    #name.append('%i_b. p.'%i)
+    name.append('%i_m. p.'%i)
+    name.append('%i_b. p.'%i)
     name.append('%i_delta_fus H'%i)
     name.append('%i_density'%i)
     name.append('%i_ionization enegy'%i)
@@ -107,7 +107,7 @@ matrix.to_csv('data/conventional.csv')
 
 feat = comp_times_base(elements.loc[:,list(desc.index)].astype('float'),desc.astype('float').T, sort = True)
 feat = pd.DataFrame(feat)
-feat = feat.iloc[:,:48]
+feat = feat.iloc[:,:64]
 feat.columns = name
 
 matrix = pd.concat([excel.loc[:,'Nr of publication'],elements,feat,prom, prep,
